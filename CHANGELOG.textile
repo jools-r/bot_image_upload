@@ -1,5 +1,9 @@
 h1(#changelog). Changelog
 
+h2. v. 0.6.6 beta (jcr)
+
+* First pass at tentative compatibility with txp 4.7
+
 h2. v. 0.6.5.1 (superfly)
 
 * Fixed the “bot_iu_fields” configuration to use a custom field

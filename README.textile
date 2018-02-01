@@ -28,10 +28,10 @@ You'll see something like this:
 
 bc.. 'bot_iu_fields' => '#article-image // fields to be used
 'bot_iu_mono_list' => '', // filelds with single image
-'bot_choose_image_text' => gTxt('Choose image'), // text for "Choose images" link and button
-'bot_image_delete_text' => gTxt('Delete image'), // text and title for "delete image" button
-'bot_image_edit_text' => gTxt('Edit image'), // text and title for "edit image" button"
-'bot_add_image_text' => gTxt('Add'), // text for "add image" checkbox
+'bot_choose_image_text' => gTxt('choose_image'), // text for "Choose images" link and button
+'bot_image_delete_text' => gTxt('delete_image'), // text and title for "delete image" button
+'bot_image_edit_text' => gTxt('edit_image'), // text and title for "edit image" button"
+'bot_add_image_text' => gTxt('add_image'), // text for "add image" checkbox
 'bot_iu_save_text' => gTxt('save'), // text for "Save" button"
 'bot_iu_cancel_text' => gTxt('cancel'), // text for "Cancel" button"
 'bot_iu_row_bg' => '#eaeaea', // selected row background
@@ -72,6 +72,10 @@ h3. Notes | Other plugins compatibility
 If you are using another plugin which already loads *the entire* jQuery ui script (such as msd_admin_datepicker) you don't want to load it again causing issues so you must set bot_iu_ui_path to '' (two single quotes). Mind that the other plugin must load *the complete *ui script (including sortables), if it is another custom ui which does not include sortables you still have to use the script provided with the download and set bot_iu_ui_path accordingly.
 
 h1(#changelog). Changelog
+
+h2. v. 0.6.6 beta (jcr)
+
+* First pass at tentative compatibility with txp 4.7
 
 h2. v. 0.6.5.1 (superfly)
 
