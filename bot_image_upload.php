@@ -289,8 +289,12 @@
 		extract(bot_iu_prefs());
 		$bot_iu_saved_image = bot_image_generate_thumbnail();
 
+		if(!empty($bot_iu_ui_path)) {
+			echo <<<JS_CODE
+	<script type="text/javascript" src="$bot_iu_ui_path"></script>
+JS_CODE;
+		}
 		echo <<<JS_CODE
-<script type="text/javascript" src="$bot_iu_ui_path"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
