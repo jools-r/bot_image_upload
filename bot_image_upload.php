@@ -27,9 +27,9 @@
 	}
 
 /**
-	CSS for the image upload. You are free to modify these
-	to match your own backend theme.
-*/
+ *	CSS for the image upload. You are free to modify these
+ *	to match your own backend theme.
+ */
 
 	function bot_image_css() {
 
@@ -170,9 +170,9 @@
 	}
 
 /**
-	Generates and stores the images required by the design.
-	Image URI is: http://example.com/textpattern/?bot_image_img=delete|edit|file
-*/
+ *	Generates and stores the images required by the design.
+ *	Image URI is: http://example.com/textpattern/?bot_image_img=delete|edit|file
+ */
 
 	function bot_image_img() {
 
@@ -255,8 +255,7 @@
 					extract($a);
 					if($thumbnail == 0){
 						$image = $id.$ext.$rnd_number;
-					}
-					else {
+					} else {
 						$image = $id.'t'.$ext.$rnd_number;
 					}
 					$str[] =
@@ -275,8 +274,8 @@
 
 
 /**
-	Generates js code
-*/
+ *	Generates js code
+ */
 
 	function bot_image_upload()
 	{
@@ -352,8 +351,7 @@ JS_CODE;
 			// Set the url the iframe must point to.
 			if (selector.prop("class") == 'bot_add_image') { // If .bot_add_image is clicked...
 				var iframeUrl = "index.php?event=image";
-			}
-			else {
+			} else {
 				// If an edit link is clicked...
 				var imageId = $(this).parents(".bot_iu_image_container").prop("class").toString().replace(/bot_iu_image_container id/g,"").replace(/ ui-sortable-handle/g,"");
 				var iframeUrl = "index.php?event=image&step=image_edit&id="+imageId;
@@ -496,8 +494,7 @@ JS_CODE;
 						}
 						if ($.inArray(editedImageId, values)!=-1) { // When editing an already selected image just refresh image.
 							$(".id"+editedImageId+" img").prop('src', imageUrl);
-						}
-						else {
+						} else {
 							values.push(editedImageId);
 							p.find("div .bot_iu_ul_container").append(
 								'<li class="bot_iu_image_container id' + editedImageId + '">' +
@@ -509,8 +506,7 @@ JS_CODE;
 								'</li>'
 							);
 						}
-					}
-					else { // we are on img list
+					} else { // we are on img list
 						var oldValues = input.val();
 						if (!oldValues[0] && type != 'mono') { // eliminates first (blank) array item if oldValue is empty
 							values.shift();
@@ -543,7 +539,8 @@ JS_CODE;
 			return false;
 		});
 
-	   $("body").on('click','.bot_image_delete',function(){ // changed 'live' with 'on' as it is now deprecated
+		// Delete button
+		$("body").on('click','.bot_image_delete',function(){ // changed 'live' with 'on' as it is now deprecated
 			var input = $("$bot_iu_fields");
 			var values = input.val().split(","); // existant ids array
 			var imageId = $(this).parents(".bot_iu_image_container").prop("class").replace(" ui-sortable-handle","").replace("bot_iu_image_container id",""); // current id
