@@ -73,9 +73,10 @@ If you are using another plugin which already loads *the entire* jQuery ui scrip
 
 h1(#changelog). Changelog
 
-h2. v. 0.6.6 beta (jcr)
+h2. v. 0.6.6.1 beta (jcr)
 
 * First pass at tentative compatibility with txp 4.7
+* Only restore saved undo state when adding images (not when editing)
 
 h2. v. 0.6.5.1 (superfly)
 
