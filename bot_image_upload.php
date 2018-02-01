@@ -522,8 +522,10 @@ JS_CODE;
 				})
 
 				// When clicking 'cancel' button...
-					p.replaceWith(backup); //solution!
 				$("#bot_iu_cancel").on('click',function(){
+					if (selector.prop("class") == 'bot_add_image') {
+						image_group.replaceWith(backup); // recover previous saved state
+					}
 					if (jQuery.ui) {
 						$(".bot_iu_ul_container").sortable({
 							update: function(event, ui) {
