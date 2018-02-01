@@ -1,0 +1,5 @@
+#@admin
+#@language de-de
+add_image => Bild hinzufügen
+delete_image => Bild löschen
+choose_images => Bilder wählen

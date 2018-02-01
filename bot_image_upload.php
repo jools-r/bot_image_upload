@@ -15,10 +15,10 @@
 			array(
 				'bot_iu_fields' => '#article-image', // fields to be used (comma separated | use #custom-n for custom fields)
 				'bot_iu_mono_list' => '', // fields with single image (comma separated | use #custom-n for cfs)
-				'bot_choose_image_text' => gTxt('Choose images'), // text for "Choose images" link and button
-				'bot_image_delete_text' => gTxt('Delete image'), // text and title for "delete image" button
-				'bot_image_edit_text' => gTxt('Edit image'), // text and title for "edit image" button"
-				'bot_add_image_text' => gTxt('Add'), // text for "add image" checkbox
+				'bot_choose_image_text' => gTxt('choose_images'), // text for "Choose images" link and button
+				'bot_image_delete_text' => gTxt('delete_image'), // text and title for "delete image" button
+				'bot_image_edit_text' => gTxt('edit_image'), // text and title for "edit image" button"
+				'bot_add_image_text' => gTxt('add_image'), // text for "add image" checkbox
 				'bot_iu_save_text' => gTxt('save'), // text for "Save" button"
 				'bot_iu_cancel_text' => gTxt('cancel'), // text for "Cancel" button"
 				'bot_iu_row_bg' => '#eaeaea', // selected row background

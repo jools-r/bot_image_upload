@@ -1,0 +1,5 @@
+#@admin
+#@language en
+add_image => Add image
+delete_image => Delete image
+choose_images => Choose images
