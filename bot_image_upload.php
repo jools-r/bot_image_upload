@@ -332,7 +332,7 @@ JS_CODE;
 		}
 
 		// When clicking 'add' or 'edit' link...
-		$("body").on("click", '.bot_add_image, .bot_image_edit', function(){
+		$("body").on('click', '.bot_add_image, .bot_image_edit', function(){
 
 			// Set variables
 			var selector = $(this); // Clicked link
@@ -434,7 +434,7 @@ JS_CODE;
 				$("#bot_iu_iframe_container").show();
 
 				// on click
-				iframe.find(".bot_image_checkbox[type=checkbox]").click(function(){
+				iframe.find(".bot_image_checkbox[type=checkbox]").on('click',function(){
 
 					var imageId = $(this).parents("tr").find(".txp-list-col-multi-edit input").val(); // Grabs image id.
 					var imageUrl = $(this).parents("tr").find("td.txp-list-col-thumbnail.has-thumbnail img").prop('src'); // Grabs url of currently checked thumb
@@ -475,13 +475,13 @@ JS_CODE;
 				iframe.find(".txp-list tr:has(input.bot_image_checkbox:checked)").addClass("bot_iu_row_background");
 
 				// Avoid FOUC when clicking links and submits.
-				iframe.find(".txp-list a, input.smallerbox, input.publish").not("#eblcropui a, #eblcropui input").click(function(){
+				iframe.find(".txp-list a, input.smallerbox, input.publish").not("#eblcropui a, #eblcropui input").on('click',function(){
 					 $("#bot_iu_iframe_container").hide();
 					 $("#bot_iu_loading").show();
 				});
 
 				// When clicking 'save' button...
-				$("#bot_iu_save").click(function(e){
+				$("#bot_iu_save").on('click',function(e){
 
 					var iframe = $("#bot_iu_iframe").contents();
 					if (iframe.find(".publish").length) { // we are on edit pane
@@ -522,8 +522,8 @@ JS_CODE;
 				})
 
 				// When clicking 'cancel' button...
-				$("#bot_iu_cancel").click(function(){
 					p.replaceWith(backup); //solution!
+				$("#bot_iu_cancel").on('click',function(){
 					if (jQuery.ui) {
 						$(".bot_iu_ul_container").sortable({
 							update: function(event, ui) {
