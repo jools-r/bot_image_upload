@@ -390,23 +390,25 @@ JS_CODE;
 
 				// Hides in iframe
 				var iframe = $("#bot_iu_iframe").contents();
-				iframe.find(".txp-header, .txp-footer, #pagetop, #end_page, #nav, #messagepane, #txp-head").hide(); // some are kept even if now no more used
-				iframe.find("#image-search option[value=author]").remove(); // remove some options from search
-				iframe.find("#image-search option[value=id]").remove();
-				iframe.find("#image-search option[value=alt]").remove();
-				iframe.find("#image-search option[value=caption]").remove();
+				iframe.find(".content").css("padding","0 1em"); // use more of window but avoid horizontal scrollbars
+				iframe.find(".txp-header, .txp-footer").hide(); // some are kept even if now no more used
+			 // iframe.find("#image-search option[value=author]").remove(); // remove some options from search
+			 // iframe.find("#image-search option[value=id]").remove();
+			 // iframe.find("#image-search option[value=alt]").remove();
+			 // iframe.find("#image-search option[value=caption]").remove();
+				iframe.find(".txp-list-options").remove(); // Hide list options
 				iframe.find(".txp-list-col-multi-edit").hide(); // Removes TXP Multiedit Column
-				iframe.find(".txp-list .id a").contents().unwrap(); // unlinks the id #
+				iframe.find(".multi-edit").hide(); // Removes TXP Multiedit Options
+				iframe.find(".txp-list .txp-list-col-id a").contents().unwrap(); // unlinks the id #
 				iframe.find(".txp-list .date").hide();
-				iframe.find(".txp-list-col-tag-build.images_detail").hide();
-				iframe.find(".txp-list-col-author.name").hide();
-				iframe.find(".txp-list-col-category.category").hide();
-				iframe.find(".thumbnail-edit").hide(); // Hides 'upload thumb'.
+				iframe.find(".txp-list-col-tag-build").hide();
+				iframe.find(".txp-list-col-author").hide();
+				iframe.find(".txp-list-col-category").hide();
+				iframe.find(".thumbnail-upload").hide(); // Hides 'upload thumb'.
 				iframe.find(".thumbnail-alter").hide(); // Hides 'create thumb'.  (Comment this out if you have images without thumbs so they are easily accessible)
-				iframe.find("#image-name").parent().hide(); // Hides 'image name'
+				iframe.find(".edit-image-name").hide(); // Hides 'image name'
 				iframe.find("input.publish").hide(); // Hides original save button
 				iframe.find("#jbx_div").remove(); // Removes jbd_multiple_upload
-				iframe.find(".txp-list .id .images_detail").remove();
 				iframe.find("#smd_thumb_profiles").remove(); // Removes smd_thumb
 
 				// Adds 'add' column
