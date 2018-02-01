@@ -386,7 +386,7 @@ JS_CODE;
 
 
 			// Iframe interactions
-			$("#bot_iu_iframe").load(function(){
+			$("#bot_iu_iframe").on('load', function(){
 
 				// Hides in iframe
 				var iframe = $("#bot_iu_iframe").contents();
