@@ -337,9 +337,9 @@ JS_CODE;
 			// Set variables
 			var selector = $(this); // Clicked link
 			var input = $("$bot_iu_fields"); // ...corresponding input
-			var p = $('#txp-image-group'); // ...surrounding p
+			var image_group = $('#txp-image-group'); // ...surrounding section container
 			var values = input.val().split(/[ ,]+/); // existant ids array
-			var backup = p.clone(); // backup for undo
+			var backup = image_group.clone(); // backup for undo
 
 			// Determines if clicked item is single-image or multi
 			var clickedId = input.prop('id');
@@ -445,13 +445,13 @@ JS_CODE;
 
 							iframe.find("tr").css("background","none"); // Eliminates all rows bg.
 							iframe.find(".bot_image_checkbox").not($(this)).prop('checked', false); // Unchecks all other checkboxes.
-							p.find(".bot_iu_image_container").remove(); // Removes image container
+							image_group.find(".bot_iu_image_container").remove(); // Removes image container
 						}
 
 						$(this).parents("tr").css("background","$bot_iu_row_bg"); // Changes checked row bg.
 						values.push(imageId); // Inserts new image id.
 
-						p.find(".bot_iu_ul_container").append(
+						image_group.find(".bot_iu_ul_container").append(
 							'<li class="bot_iu_image_container id' + imageId + '">' +
 								'<img src="' + imageUrl + '" />' +
 								'<span>' +
@@ -465,7 +465,7 @@ JS_CODE;
 
 						var arrayIndex = $.inArray(imageId, values); // checks this id index in array
 						values.splice(arrayIndex,1); // eliminates this id from array
-						p.find(".bot_iu_image_container.id"+imageId).remove(); // Removes thumbnail container.
+						image_group.find(".bot_iu_image_container.id"+imageId).remove(); // Removes thumbnail container.
 						$(this).parents("tr").css("background","none"); // Removes background.
 
 					}
@@ -490,13 +490,13 @@ JS_CODE;
 						var imageUrl = iframe.find(".content-image").prop('src'); // Grabs the new image thumbnail. smd_mod - prima era: var imageUrl = iframe.find(".thumbnail-edit img").prop('src');
 						if (type == 'mono') {
 							values.length = 0;
-							p.find(".bot_iu_ul_container li").remove();
+							image_group.find(".bot_iu_ul_container li").remove();
 						}
 						if ($.inArray(editedImageId, values)!=-1) { // When editing an already selected image just refresh image.
 							$(".id"+editedImageId+" img").prop('src', imageUrl);
 						} else {
 							values.push(editedImageId);
-							p.find("div .bot_iu_ul_container").append(
+							image_group.find("div .bot_iu_ul_container").append(
 								'<li class="bot_iu_image_container id' + editedImageId + '">' +
 									'<img src="' + imageUrl + '" />' +
 									'<span>' +
