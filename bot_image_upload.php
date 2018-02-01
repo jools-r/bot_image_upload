@@ -443,7 +443,7 @@ JS_CODE;
 						if (type == 'mono') {
 
 							iframe.find("tr").css("background","none"); // Eliminates all rows bg.
-							// iframe.find(".bot_image_checkbox").not($(this)).prop('checked', false); // Unchecks all other checkboxes.
+							iframe.find(".bot_image_checkbox").not($(this)).prop('checked', false); // Unchecks all other checkboxes.
 							p.find(".bot_iu_image_container").remove(); // Removes image container
 						}
 
