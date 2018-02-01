@@ -527,8 +527,9 @@ JS_CODE;
 					if (jQuery.ui) {
 						$(".bot_iu_ul_container").sortable({
 							update: function(event, ui) {
+								var input = $("$bot_iu_fields");
 								var imgOrder = $(this).sortable('toArray',{attribute:"class"}).toString().replace(/bot_iu_image_container id/g,"").replace(/ ui-sortable-handle/g,"");
-								$(this).siblings("input").val(imgOrder);
+								input.val(imgOrder);
 							}
 						});
 					}
