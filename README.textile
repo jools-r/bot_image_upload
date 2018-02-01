@@ -1,0 +1,94 @@
+h1. bot_image_upload
+
+*Note: this version is for the new layout in Textpattern v4.7 and is not compatible with earlier versions of Textpattern.*
+
+h2. Image upload help
+
+h3. Overview
+
+This plugin allows to insert, upload, sort, show and edit images within the ‘write’ tab.
+
+h3. Features
+
+* Multiple fields ("article image" or any other custom field) can be set for the plugin to operate.
+* A field can be set to accept single or multiple images
+* Image thumbnails associated with an article are shown in the 'write' tab
+* Drag'n'drop support for easy images sorting in the 'write' tab'
+
+h3. Examples
+
+ Set the "article image" field to accept only one image, custom field 2 to accept a list of them for a gallery, custom field 3 for another gallery and so on.
+
+h3. Installation | configuration
+
+Paste the code into the Admin > Plugins tab, install and enable the plugin. If you want to sort images (optional) you must upload the jquery ui script which comes with the plugin. Default location is in 'textpattern' directory. If you choose another you must change the path in the plugins preferences (bot_iu_ui_path).
+
+If you want to change some default settings configure the plugin directly in the plugins code. Go to plugins > edit and search for ‘Global preferences - Configuration’ in the first lines.
+You'll see something like this:
+
+bc.. 'bot_iu_fields' => '#article-image // fields to be used
+'bot_iu_mono_list' => '', // filelds with single image
+'bot_choose_image_text' => gTxt('Choose image'), // text for "Choose images" link and button
+'bot_image_delete_text' => gTxt('Delete image'), // text and title for "delete image" button
+'bot_image_edit_text' => gTxt('Edit image'), // text and title for "edit image" button"
+'bot_add_image_text' => gTxt('Add'), // text for "add image" checkbox
+'bot_iu_save_text' => gTxt('save'), // text for "Save" button"
+'bot_iu_cancel_text' => gTxt('cancel'), // text for "Cancel" button"
+'bot_iu_row_bg' => '#eaeaea', // selected row background
+'bot_iu_ui_path' => 'jquery-ui-1.8.9.custom.min.js', // path to the jQuery ui script. Defaults to the 'textpattern' directory
+
+p. To configure change the part that comes after the "=>" and its enclosed in single quotes. Read comments for help.
+The most important configuration options are the first two:
+
+# "bot_iu_fields" determines the fields which will be used (can be "article image" or/and any other custom field)
+# 'bot_iu_mono_list' sets the fields which will accept only a single image
+
+Each of them takes a comma separated list of values which *must be* in this form:
+
+#article-image for article image and
+#custom-n for custom fields where n is the custom field id
+
+For an example I could configure them this way:
+
+bc.. 'bot_iu_fields' => '#article-image, #custom-3, #custom-2' // fields to be used
+'bot_iu_mono_list' => '#article-image, #custom-3,', // fields with single image
+
+p. This plugin can be quite easily adapted to your needs, from text to aspect. If you want to modify its look edit the css in the function 'bot_image_css'. For more complex mods you will save some time if you have a look at the underlying html structure first.
+
+Keep in mind that the iframe content style cannot be addressed throught this css: you'll have to add or change some js lines.
+
+h3. Tips
+
+This isn't strictly related to the plugin but can be useful to know. If you want to output a list of images in the same sort order you input them in a custom field (or in the 'article_image' field) use this code:
+
+bc. <txp:images id='<txp:custom_field name="article_image" />' wraptag="ul" break="li" sort=' field(id, <txp:custom_field name=''article_image'' />)'>
+
+Of course replace 'article_image' with the custom field name if you are using one.
+
+If you are associating a lot of images with an article I suggest to use my other plugin "bot_wtc":http://forum.textpattern.com/viewtopic.php?id=32175 to move the field in the central colum for a nicer look
+
+h3. Notes | Other plugins compatibility
+
+If you are using another plugin which already loads *the entire* jQuery ui script (such as msd_admin_datepicker) you don't want to load it again causing issues so you must set bot_iu_ui_path to '' (two single quotes). Mind that the other plugin must load *the complete *ui script (including sortables), if it is another custom ui which does not include sortables you still have to use the script provided with the download and set bot_iu_ui_path accordingly.
+
+h1(#changelog). Changelog
+
+h2. v. 0.6.4
+
+* Compatibility with txp 4.5.7
+
+h2. v. 0.6.3
+
+* Compatibility with txp 4.5 (thanks photonomad)
+* Updated jquery ui to 1.8.23
+* Some other minor tweaks
+
+h2. v. 0.6.2
+
+* Bug fixed - image thumbnails wheren't deleted when unchecked in iframe (cf values where correctly deleted though - was only a visual issue)
+* Bug fixed - When hitting the cancel button the sortable ability from the UL list was gone (thanks "superfly":http://www.redbot.it/txp/plugin-bot_image_upload#c000365)
+* Improvement - replaced jquery "children()" with "find()" for theme compatibility ("vitraux" theme)
+* Improvement - better theme compatibility ("Hive", "Din" and probably others)
+* Improvement - addressed issue with different number of columns depending on the number of authors and privileges (thanks "Jukka":http://forum.textpattern.com/viewtopic.php?pid=251030#p251030) .
+* Updated jquery ui to 1.8.16
+* Help updated

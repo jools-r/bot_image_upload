@@ -1,0 +1,21 @@
+h1(#changelog). Changelog
+
+h2. v. 0.6.4
+
+* Compatibility with txp 4.5.7
+
+h2. v. 0.6.3
+
+* Compatibility with txp 4.5 (thanks photonomad)
+* Updated jquery ui to 1.8.23
+* Some other minor tweaks
+
+h2. v. 0.6.2
+
+* Bug fixed - image thumbnails wheren't deleted when unchecked in iframe (cf values where correctly deleted though - was only a visual issue)
+* Bug fixed - When hitting the cancel button the sortable ability from the UL list was gone (thanks "superfly":http://www.redbot.it/txp/plugin-bot_image_upload#c000365)
+* Improvement - replaced jquery "children()" with "find()" for theme compatibility ("vitraux" theme)
+* Improvement - better theme compatibility ("Hive", "Din" and probably others)
+* Improvement - addressed issue with different number of columns depending on the number of authors and privileges (thanks "Jukka":http://forum.textpattern.com/viewtopic.php?pid=251030#p251030) .
+* Updated jquery ui to 1.8.16
+* Help updated
