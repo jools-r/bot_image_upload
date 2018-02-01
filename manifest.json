@@ -1,9 +1,9 @@
 {
     "name": "bot_image_upload",
     "description": "Upload, edit, sort and show images within the write tab",
-    "version": "0.6.4beta",
+    "version": "0.6.5.1beta",
     "type": 3,
-    "author": "redbot",
+    "author": "redbot + superfly",
     "author_uri": "http://www.redbot.it/txp/",
     "order": 5,
     "flags": 0,

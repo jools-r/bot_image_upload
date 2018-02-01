@@ -1,5 +1,17 @@
 h1(#changelog). Changelog
 
+h2. v. 0.6.5.1 (superfly)
+
+* Fixed the “bot_iu_fields” configuration to use a custom field
+* Fixed a bug which added a unnecessary semicolon, after editing the picture values like ALT or description
+
+h2. v. 0.6.5 (superfly)
+
+* Compatibility with txp 4.6
+* Fixed some jQuery selectors
+* Hides #smd_thumb_profiles in the opening iFrame
+* Shows Images Form Field #article-image
+
 h2. v. 0.6.4
 
 * Compatibility with txp 4.5.7
