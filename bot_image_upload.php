@@ -381,7 +381,7 @@ JS_CODE;
 			var loadingTopMargin = (windowHeight / 2) - 30;
 			$("#bot_iu_iframe_container").height(containerHeight).css("top", containerTopMargin);
 			$("#bot_iu_iframe").height(iframeHeight).css("margin-top", containerTopMargin / 2);
-			$("#bot_iu_save").css("margin-top", containerTopMargin / 2);
+			$("#bot_iu_save").css("margin-top", containerTopMargin / 4);
 			$("body").append('<p id="bot_iu_loading">loading</p>');
 
 
