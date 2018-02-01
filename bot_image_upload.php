@@ -3,7 +3,7 @@
 	if(@txpinterface == 'admin') {
 		register_callback('bot_image_upload','article');
 		register_callback('bot_image_css','admin_side','head_end');
- 		bot_image_img();
+		bot_image_img();
 	}
 
 /*******************************************************************************
@@ -82,11 +82,11 @@
 					width:100%;
 				}
 				#bot_iu_iframe_container {
-				    /* height and margin-top are set by js */
-				    display:none;
-				    position:fixed;
-				    left:50%;
-				    z-index: 99999;
+					/* height and margin-top are set by js */
+					display:none;
+					position:fixed;
+					left:50%;
+					z-index: 99999;
 					overflow: hidden;
 					background: #fff;
 					width:80%;
@@ -176,7 +176,7 @@
 
 	function bot_image_img() {
 
- 	global $event;
+	global $event;
 		if($event != 'article') { // Generates images only in 'write' tab.
 			return;
 		}
@@ -204,46 +204,46 @@
 	}
 
 
-    function bot_image_generate_thumbnail()
-    {
+	function bot_image_generate_thumbnail()
+	{
 		global $prefs, $step;
 		extract(bot_iu_prefs());
 		$image_path = hu.$prefs['img_dir'];
 		$article_id = gps('ID'); // Fetch article id from $_GET, if any, or sets it to ''
-    	$fields_array = explode(",", $bot_iu_fields); // tranforms in array
+		$fields_array = explode(",", $bot_iu_fields); // tranforms in array
 		for ($i =0; $i < count($fields_array); $i++) { // changes array values to be used with urls and db
 			$current_field = trim($fields_array[$i]);
 			$current_field = ($current_field == '#article-image') ? 'Image': str_replace('#custom-', 'custom_', $current_field);
 			$fields_array[$i] = $current_field; // reinserts modified value
 		}
 
-        if ($step == 'edit' && $article_id) { // when opening an already existant article
+		if ($step == 'edit' && $article_id) { // when opening an already existant article
 			$fields_string = implode(',', $fields_array);
-            $values = safe_row($fields_string, 'textpattern', 'ID = '. $article_id);
-    	}
+			$values = safe_row($fields_string, 'textpattern', 'ID = '. $article_id);
+		}
 
-    	elseif($step == 'create' || $step == 'edit') { // when hitting 'save'
+		elseif($step == 'create' || $step == 'edit') { // when hitting 'save'
 			for ($i =0; $i < count($fields_array); $i++) { // fetch all image ids and put in array 'values'
 				$current = $fields_array[$i];
 				$values[] = gps($current_field);
 			}
-    	}
+		}
 
 		// creates a numerical array of all images for current article
 		$values = array_filter(array_values($values)); // convert to numerical array and remove empty values
 		$values = explode(',', implode(',', $values)); // only one value per array key
 		// Sanitizes values
-      	foreach($values as $value) {
-		    if(is_numeric($value)) {
-			    $ids[] = "'".doSlash($value)."'";
-            }
-	    }
+		foreach($values as $value) {
+			if(is_numeric($value)) {
+				$ids[] = "'".doSlash($value)."'";
+			}
+		}
 
-        // Proceed only if an article image exists.
-        if (isset($ids)) {
+		// Proceed only if an article image exists.
+		if (isset($ids)) {
 
-            $ids = implode(',',$ids);
-          	$rs = safe_rows(
+			$ids = implode(',',$ids);
+			$rs = safe_rows(
 				'ext,id,thumbnail',
 				'txp_image',
 				'id in ('.$ids.')'
@@ -270,16 +270,16 @@
 				}
 				return implode('',$str);
 			}
-        }
-    }
+		}
+	}
 
 
 /**
 	Generates js code
 */
 
-    function bot_image_upload()
-    {
+	function bot_image_upload()
+	{
 		global $event;
 
 		if($event != 'article') {
@@ -298,30 +298,30 @@
 				$("$bot_iu_fields").parents("p").append('<ul class="bot_iu_ul_container"></ul><a class="bot_add_image" href="#" title="$bot_choose_image_text">$bot_choose_image_text</a>'); // Creates an 'add image' link.
 				$("body").append('<div id="bot_temporary">$bot_iu_saved_image</div>');
 				$(".bot_add_image").each(function(){ // first display all saved images in a temporary div and then clone each to assigned field
-	     			var value = $(this).parents("p").find("input").val();
-		            var container = $(this).prev('.bot_iu_ul_container');
+					var value = $(this).parents("p").find("input").val();
+					var container = $(this).prev('.bot_iu_ul_container');
 					if(value) {
 						var ids = value.split(",");
 						for(var i = 0 ; i < ids.length ; i++) {
-		                    var imageId = ids[i];
+							var imageId = ids[i];
 							if (ids[i]) {
-			                    var idClass = ".id" + ids[i];
+								var idClass = ".id" + ids[i];
 								$("#bot_temporary "+idClass).clone().appendTo(container); // clone cos otherwise duplicate images are appended only once
-	                        }
-     					}
+							}
+						}
 					}
 				});
 				$("#bot_temporary").remove();
 				$("$bot_iu_fields").hide(); // Hide article image input.
 
 				if (jQuery.ui) {
-			    	$(".bot_iu_ul_container").sortable({
+					$(".bot_iu_ul_container").sortable({
 						update: function(event, ui) {
 							var imgOrder = $(this).sortable('toArray',{attribute:"class"}).toString().replace(/bot_iu_image_container id/g,"").replace(/ ui-sortable-handle/g,"");
 							$(this).siblings("input").val(imgOrder);
 						}
 					});
-			    }
+				}
 
 				// When clicking 'add' or 'edit' link...
 				$("body").on("click", '.bot_add_image, .bot_image_edit', function(){
@@ -331,13 +331,13 @@
 					var input = selector.parents("p").find("input"); // ...corresponding input
 					var p = selector.parents("p"); // ...surrounding p
 					var values = input.val().split(","); // existant ids array
-		            var backup = p.clone(); // backup for undo
+					var backup = p.clone(); // backup for undo
 
 					// Determines if clicked item is single-image or multi
 					var clickedId = input.prop('id');
 					var monoList = '$bot_iu_mono_list';
-		            if (monoList.indexOf(clickedId)!= -1) { // if clicked input id is in $bot_iu_mono_list string
-		            	var type = 'mono';
+					if (monoList.indexOf(clickedId)!= -1) { // if clicked input id is in $bot_iu_mono_list string
+						var type = 'mono';
 					}
 
 					// Set the url the iframe must point to.
@@ -351,8 +351,8 @@
 					}
 
 					// Fade in Background
-				    $('body').append('<div id="bot_iu_fade"></div>'); //Add the fade layer to bottom of the body tag.
-				    $('#bot_iu_fade').show().css({'filter' : 'alpha(opacity=80)'}); // show the fade layer -  fix the IE Bug on fading transparencies
+					$('body').append('<div id="bot_iu_fade"></div>'); //Add the fade layer to bottom of the body tag.
+					$('#bot_iu_fade').show().css({'filter' : 'alpha(opacity=80)'}); // show the fade layer -  fix the IE Bug on fading transparencies
 
 					// Creates an hidden iframe.
 					$("body").append(
@@ -361,8 +361,8 @@
 						'</div>'
 					);
 
-	           		// creates 'cancel' and 'save' buttons
-		            $("#bot_iu_iframe").after("<p><a id=\"bot_iu_save\">$bot_iu_save_text</a><a id=\"bot_iu_cancel\">$bot_iu_cancel_text</a></p>");
+					// creates 'cancel' and 'save' buttons
+					$("#bot_iu_iframe").after("<p><a id=\"bot_iu_save\">$bot_iu_save_text</a><a id=\"bot_iu_cancel\">$bot_iu_cancel_text</a></p>");
 
 					// Calculates heights based on window size for vertical centering.
 					var windowHeight = $(window).height();
@@ -408,17 +408,17 @@
 						// Checks checkboxes depending on already set cfs.
 						if (type == 'mono') { // if mono reduce values array to last item
 							var imageId = values.pop();
-			            	values=[];
+							values=[];
 							values.push(imageId);
-					    }
-	                    for(var i = 0 ; i < values.length ; i++) {
-	                        imageId = values[i];
-	                        iframe.find(".txp-list .multi-edit input").filter(function(){
+						}
+						for(var i = 0 ; i < values.length ; i++) {
+							imageId = values[i];
+							iframe.find(".txp-list .multi-edit input").filter(function(){
 								return $(this).val() == imageId
 							;}).parents("tr").find('input.bot_image_checkbox').prop('checked', true).parents("tr").css("background","$bot_iu_row_bg");
 						}
 
-      					// everything is done, now loader can be hidden and iframe can be shown.
+						// everything is done, now loader can be hidden and iframe can be shown.
 						$("#bot_iu_loading").hide();
 						$("#bot_iu_iframe_container").show();
 
@@ -428,12 +428,12 @@
 							var imageUrl = $(this).parents("tr").find("td.thumbnail img").prop('src'); // Grabs url of currently checked thumb
 
 							if (this.checked){
-                                if (type == 'mono') {
+								if (type == 'mono') {
 									iframe.find("tr").css("background","none"); // Eliminates all rows bg.
 									iframe.find(".bot_image_checkbox").not($(this)).prop('checked', false); // Unchecks all other checkboxes.
 									p.find(".bot_iu_image_container").remove(); // Removes image container
-							    }
-							    $(this).parents("tr").css("background","$bot_iu_row_bg"); // Changes checked row bg.
+								}
+								$(this).parents("tr").css("background","$bot_iu_row_bg"); // Changes checked row bg.
 								values.push(imageId); // Inserts new image id.
 								p.find(".bot_iu_ul_container").append(
 									'<li class="bot_iu_image_container id' + imageId + '">' +
@@ -448,7 +448,7 @@
 
 							else {
 								var arrayIndex = $.inArray(imageId, values); // checks this id index in array
-		                        values.splice(arrayIndex,1); // eliminates this id from array
+								values.splice(arrayIndex,1); // eliminates this id from array
 								p.find(".bot_iu_image_container.id"+imageId).remove(); // Removes thumbnail container.
 								$(this).parents("tr").css("background","none"); // Removes background.
 							}
@@ -467,19 +467,19 @@
 						$("#bot_iu_save").click(function(){
 
 							var iframe = $("#bot_iu_iframe").contents();
-                            if (iframe.find(".publish").length) { // we are on edit pane
-                            	iframe.find(".publish").click();
+							if (iframe.find(".publish").length) { // we are on edit pane
+								iframe.find(".publish").click();
 								var editedImageId = iframe.find(".publish").parent().next("input[name=id]").val();
 								var imageUrl = iframe.find(".thumbnail").prop('src'); // Grabs the new image thumbnail. smd_mod - prima era: var imageUrl = iframe.find(".thumbnail-edit img").prop('src');
-                                if (type == 'mono') {
-					            	values.length = 0;
-					            	p.find(".bot_iu_ul_container li").remove();
-							    }
+								if (type == 'mono') {
+									values.length = 0;
+									p.find(".bot_iu_ul_container li").remove();
+								}
 								if ($.inArray(editedImageId, values)!=-1) { // When editing an already selected image just refresh image.
 									$(".id"+editedImageId+" img").prop('src', imageUrl);
 								}
 								else {
-                            		values.push(editedImageId);
+									values.push(editedImageId);
 									p.find(".bot_iu_ul_container").append(
 										'<li class="bot_iu_image_container id' + editedImageId + '">' +
 											'<img src="' + imageUrl + '" />' +
@@ -489,35 +489,35 @@
 											'</span>' +
 										'</li>'
 									);
-        						}
-                            }
-                            else { // we are on img list
-                                var oldValues = input.val();
-                                if (!oldValues[0] && type != 'mono') { // eliminates first (blank) array item if oldValue is empty
+								}
+							}
+							else { // we are on img list
+								var oldValues = input.val();
+								if (!oldValues[0] && type != 'mono') { // eliminates first (blank) array item if oldValue is empty
 									values.shift();
-                                }
-                               if (type == 'mono') {
+								}
+							   if (type == 'mono') {
 									var imageId = values.pop();
-					            	values=[];
+									values=[];
 									values.push(imageId);
-							    }
+								}
 								input.val(values); // update cf values
-    							$("#bot_iu_iframe_container, #bot_iu_loading, #bot_iu_fade").remove();
-                            }
+								$("#bot_iu_iframe_container, #bot_iu_loading, #bot_iu_fade").remove();
+							}
 						})
 
 						// When clicking 'cancel' button...
 						$("#bot_iu_cancel").click(function(){
 							p.after(backup).next().remove(); //solution!
 							if (jQuery.ui) {
-						    	$(".bot_iu_ul_container").sortable({
+								$(".bot_iu_ul_container").sortable({
 									update: function(event, ui) {
 										var imgOrder = $(this).sortable('toArray',{attribute:"class"}).toString().replace(/bot_iu_image_container id/g,"").replace(/ ui-sortable-handle/g,"");
 										$(this).siblings("input").val(imgOrder);
 									}
 								});
-						    }
-			                $("#bot_iu_iframe_container, #bot_iu_loading, #bot_iu_fade").remove();
+							}
+							$("#bot_iu_iframe_container, #bot_iu_loading, #bot_iu_fade").remove();
 						})
 
 					});
@@ -529,7 +529,7 @@
 					var values = input.val().split(","); // existant ids array
 					var imageId = $(this).parents(".bot_iu_image_container").prop("class").replace("bot_iu_image_container id",""); // current id
 					var arrayIndex = $.inArray(imageId, values); // checks this id index in array
-		            values.splice(arrayIndex,1); // eliminates this id from array
+					values.splice(arrayIndex,1); // eliminates this id from array
 					input.val(values);  // updates values
 					$(this).parents(".bot_iu_image_container").remove(); // Removes image container
 					return false;
@@ -537,4 +537,4 @@
 			});
 		</script>
 JS_CODE;
-    }
+	}
